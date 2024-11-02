@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'examples/example1.dart'; // Import each example page you create
+import 'examples/example2.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -54,19 +57,33 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class ExampleScreen extends StatelessWidget {
+  final int exampleNumber;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  ExampleScreen({required this.exampleNumber});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Example $exampleNumber"),
+      ),
+      body: Center(
+        child: Text(
+          "This is Example $exampleNumber",
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
   }
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<String> exampleNames = [
+    "Custom Example 1",
+    "Custom Example 2",
+    // Add more custom names as needed
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -86,40 +103,33 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      body: ListView.builder(
+        itemCount: exampleNames.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(exampleNames[index]),
+            onTap: () {
+              // Navigate to the corresponding example page based on index
+              Widget nextPage;
+              switch (index) {
+                case 0:
+                  nextPage = Example1();
+                  break;
+                case 1:
+                  nextPage = Example2();
+                  break;
+                // Add cases for additional examples
+                default:
+                  nextPage = Example1();
+              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => nextPage),
+              );
+            },
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
