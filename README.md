@@ -8,7 +8,7 @@ Thus we can use Rust for Backend.
 
 A link on where we can see the project as a website can be found here:
 
-<span style="color:blue"> Insert Link here </span>
+<span style="color:red"> Insert Link here </span>
 
 If we decide on another Frontend then forget this.
 
