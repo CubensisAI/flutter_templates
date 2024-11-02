@@ -1,16 +1,15 @@
 # flutter_templates
 
-A new Flutter project.
+This are just some non functional examples on how it could look like. 
 
-## Getting Started
+In the end if we choose flutter I would suggest to add the [flutter rust bridge](https://github.com/fzyzcjy/flutter_rust_bridge)
 
-This project is a starting point for a Flutter application.
+Thus we can use Rust for Backend.
 
-A few resources to get you started if this is your first Flutter project:
+A link on where we can see the project as a website can be found here:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<span style="color:blue"> Insert Link here </span>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+If we decide on another Frontend then forget this.
+
+
