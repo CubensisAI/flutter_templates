@@ -1,11 +1,21 @@
+//The original content is temporarily commented out to allow generating a self-contained demo - feel free to uncomment later.
+
 import 'package:flutter/material.dart';
 
 import 'examples/example1.dart'; // Import each example page you create
 import 'examples/example2.dart';
 
-void main() {
+//import 'package:flutter_templates/src/rust/api/simple.dart';
+import 'package:flutter_templates/src/rust/frb_generated.dart';
+
+Future<void> main() async {
+  await RustLib.init();
   runApp(const MyApp());
 }
+
+// void main() {
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -60,7 +70,7 @@ class MyHomePage extends StatefulWidget {
 class ExampleScreen extends StatelessWidget {
   final int exampleNumber;
 
-  ExampleScreen({required this.exampleNumber});
+  const ExampleScreen({super.key, required this.exampleNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +81,7 @@ class ExampleScreen extends StatelessWidget {
       body: Center(
         child: Text(
           "This is Example $exampleNumber",
-          style: TextStyle(fontSize: 24),
+          style: const TextStyle(fontSize: 24),
         ),
       ),
     );
@@ -113,14 +123,14 @@ class _MyHomePageState extends State<MyHomePage> {
               Widget nextPage;
               switch (index) {
                 case 0:
-                  nextPage = Example1();
+                  nextPage = const Example1();
                   break;
                 case 1:
-                  nextPage = Example2();
+                  nextPage = const Example2();
                   break;
                 // Add cases for additional examples
                 default:
-                  nextPage = Example1();
+                  nextPage = const Example1();
               }
               Navigator.push(
                 context,
@@ -133,3 +143,30 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_templates/src/rust/api/simple.dart';
+// import 'package:flutter_templates/src/rust/frb_generated.dart';
+
+// Future<void> main() async {
+//   await RustLib.init();
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(title: const Text('flutter_rust_bridge quickstart')),
+//         body: Center(
+//           child: Text(
+//               'Action: Call Rust `greet("Tom")`\nResult: `${greet(name: "Tom")}`'),
+//         ),
+//       ),
+//     );
+//   }
+// }
